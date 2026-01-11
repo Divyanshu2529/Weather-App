@@ -1,0 +1,55 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background-image: url("./assets/backgroundimg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#root {
+  min-height: 100vh;
+  background: transparent;
+  overflow: hidden;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+  padding: rem;
+  margin: 2rem auto;
+}
+
+
+.search-input{
+    width: 30%;
+    height: 45px;
+    border: 2px solid rgba(79, 132, 142, 0.85);
+    border-radius: 40px;
+    background: transparent;
+    font-size: 16px;
+    padding-left: 20px;
+}
+.search-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+.search-button{
+  width: 85px;
+  height: 45px;
+  border-radius: 30px;
+  border: 2px solid rgb(42, 102, 159);
+  background: transparent;
+  font-size: 16px;
+  color: rgb(15, 62, 132);
+}
