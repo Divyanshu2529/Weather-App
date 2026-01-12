@@ -6,6 +6,9 @@ export default function Header() {
         </label>
 
         <input
+          value = {location}
+          onChange = {event => setLocation(event.target.value)}
+          onKeyPress = {searchLocation}
           id="site-search"
           name="q"
           type="search"
