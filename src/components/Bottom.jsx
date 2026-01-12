@@ -1,79 +1,44 @@
-export default function Bottom() {
+export default function Bottom({ forecast, unit }) {
+  if (!forecast || forecast.length === 0) return null;
+
+  const toF = (c) => (c * 9) / 5 + 32;
+
+  const getDayName = (dt_txt) =>
+    new Date(dt_txt).toLocaleDateString(undefined, { weekday: "short" });
+
   return (
     <div className="bottom">
       <div className="forecast">
         <h2 className="forecast-title">5-Day Forecast</h2>
 
         <div className="forecast-grid">
-          <div className="forecast-card">
-            <p className="forecast-day">Mon</p>
-            <img
-              className="forecast-icon"
-              src="https://cdn-icons-png.flaticon.com/512/1163/1163679.png"
-              alt="Sunny"
-            />
-            <p className="forecast-desc">Sunny</p>
-            <div className="forecast-temps">
-              <span className="forecast-high">75°</span>
-              <span className="forecast-low">62°</span>
-            </div>
-          </div>
+          {forecast.map((day) => {
+            const tempC = day.main.temp;
+            const temp = unit === "C" ? tempC : toF(tempC);
 
-          <div className="forecast-card">
-            <p className="forecast-day">Tue</p>
-            <img
-              className="forecast-icon"
-              src="https://cdn-icons-png.flaticon.com/512/414/414825.png"
-              alt="Cloudy"
-            />
-            <p className="forecast-desc">Cloudy</p>
-            <div className="forecast-temps">
-              <span className="forecast-high">72°</span>
-              <span className="forecast-low">60°</span>
-            </div>
-          </div>
+            const icon = day.weather[0].icon;
+            const desc = day.weather[0].main;
 
-          <div className="forecast-card">
-            <p className="forecast-day">Wed</p>
-            <img
-              className="forecast-icon"
-              src="https://cdn-icons-png.flaticon.com/512/414/414974.png"
-              alt="Rain"
-            />
-            <p className="forecast-desc">Rain</p>
-            <div className="forecast-temps">
-              <span className="forecast-high">68°</span>
-              <span className="forecast-low">58°</span>
-            </div>
-          </div>
+            return (
+              <div className="forecast-card" key={day.dt}>
+                <p className="forecast-day">{getDayName(day.dt_txt)}</p>
 
-          <div className="forecast-card">
-            <p className="forecast-day">Thu</p>
-            <img
-              className="forecast-icon"
-              src="https://cdn-icons-png.flaticon.com/512/861/861059.png"
-              alt="Windy"
-            />
-            <p className="forecast-desc">Windy</p>
-            <div className="forecast-temps">
-              <span className="forecast-high">70°</span>
-              <span className="forecast-low">59°</span>
-            </div>
-          </div>
+                <img
+                  className="forecast-icon"
+                  src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+                  alt={desc}
+                />
 
-          <div className="forecast-card">
-            <p className="forecast-day">Fri</p>
-            <img
-              className="forecast-icon"
-              src="https://cdn-icons-png.flaticon.com/512/1146/1146869.png"
-              alt="Clear"
-            />
-            <p className="forecast-desc">Clear</p>
-            <div className="forecast-temps">
-              <span className="forecast-high">76°</span>
-              <span className="forecast-low">63°</span>
-            </div>
-          </div>
+                <p className="forecast-desc">{desc}</p>
+
+                <div className="forecast-temps">
+                  <span className="forecast-high">
+                    {Math.round(temp)}°{unit}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

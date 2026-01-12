@@ -122,11 +122,26 @@ body {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.icon {
-  width: 64px;
-  height: 64px;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.3));
+.icon-container {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);   /* brighter */
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.icon {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+}
+
 
 
 .bottom-info {

@@ -1,14 +1,13 @@
-export default function Header() {
+export default function Header({location, setLocation, searchLocation}) {
   return (
     <>
-      <form className="search-form" role="search">
+      <form className="search-form" role="search" onSubmit={searchLocation}>
         <label htmlFor="site-search" className="search-label">
         </label>
 
         <input
           value = {location}
-          onChange = {event => setLocation(event.target.value)}
-          onKeyPress = {searchLocation}
+          onChange = {(event) => setLocation(event.target.value)}
           id="site-search"
           name="q"
           type="search"
